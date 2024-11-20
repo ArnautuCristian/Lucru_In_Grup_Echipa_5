@@ -4,15 +4,15 @@ namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Models\Product;
+use App\Models\Category;
 
-class ProductController
+class CategoryController
 {
     public function index(Request $request, Response $response, $args)
     {
-        $products = Product::all();
+        $categories = Category::all();
         ob_start();
-        require '../views/products/index.view.php';
+        require '../views/categories/index.view.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -20,9 +20,10 @@ class ProductController
 
     public function show(Request $request, Response $response, $args)
     {
-        $product = Product::find($args['id']);
+        $category = Category::find($args['id']);
+        $products = $category->products;
         ob_start();
-        require '../views/products/show.view.php';
+        require '../views/categories/show.view.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

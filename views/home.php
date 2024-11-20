@@ -8,6 +8,6 @@
 </head>
 <body>
     <?php include '../views/navbar.php'?> 
-    <h1>123</h1>
+    <h1>Pagina principala</h1>
 </body>
 </html>

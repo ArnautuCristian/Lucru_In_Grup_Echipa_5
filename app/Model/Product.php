@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    // Specifică tabelul asociat
     protected $table = 'products';
 
-    // Atributele care pot fi umplute (pentru protecția împotriva "Mass Assignment")
     protected $fillable = [
         'nume', 'descriere', 'pret', 'stoc', 'categorie_id', 'culoare', 'marime', 'colectie'
     ];
@@ -24,5 +22,8 @@ class Product extends Model
         return $this->hasMany(Wishlist::class);
     }
 
-    // De asemenea, poți adăuga funcționalități pentru calculul prețului, reduceri etc.
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categorie_id');
+    }
 }
