@@ -12,7 +12,7 @@ class CategoryController
     {
         $categories = Category::all();
         ob_start();
-        require '../views/categories/index.view.php';
+        require '../views/categories/index.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -23,7 +23,7 @@ class CategoryController
         $category = Category::find($args['id']);
         $products = $category->products;
         ob_start();
-        require '../views/categories/show.view.php';
+        require '../views/categories/show.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

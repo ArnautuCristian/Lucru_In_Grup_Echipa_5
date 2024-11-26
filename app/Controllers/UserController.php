@@ -11,7 +11,7 @@ class UserController
     public function login(Request $request, Response $response, $args)
     {
         ob_start();
-        require '../views/login.view.php';
+        require '../views/login.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -20,7 +20,7 @@ class UserController
     public function register(Request $request, Response $response, $args)
     {
         ob_start();
-        require '../views/register.view.php';
+        require '../views/register.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+        }
+
+        .btn-custom {
+            margin-left: 10px;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            font-family: Arial, sans-serif;
+        }
+
+        .hero-section {
+            background: url('https://via.placeholder.com/1920x400?text=Welcome+to+MyClothingStore') center/cover no-repeat;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        .content-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer {
+            margin-top: 57px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <!-- Denumirea magazinului -->
+            <a class="navbar-brand" href="#">MyClothingStore</a>
+            <!-- Buton pentru meniul responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Meniurile principale -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Option 1</a></li>
+                            <li><a class="dropdown-item" href="#">Option 2</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Option 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Butoanele Login și Register -->
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-primary btn-custom">Login</a>
+                    <a href="#" class="btn btn-primary btn-custom">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="text-center">
+            <h1>Bine ați venit la MyClothingStore!</h1>
+            <p>Cea mai bună alegere pentru vestimentația dumneavoastră!</p>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section container">
+        <h2 class="text-primary">Aceasta este pagina principală</h2>
+        <p class="lead">Pentru a vizualiza produsele noastre, vă rugăm să vă autentificați sau să vă înregistrați.</p>
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-primary btn-lg me-3">Login</a>
+            <a href="#" class="btn btn-primary btn-lg">Register</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light text-center py-3 shadow-sm">
+        <p>&copy; 2024 MyClothingStore. Toate drepturile rezervate.</p>
+    </footer>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
