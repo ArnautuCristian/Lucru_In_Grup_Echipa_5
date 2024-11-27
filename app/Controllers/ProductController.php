@@ -4,14 +4,16 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController
 {
     public function index(Request $request, Response $response, $args)
     {
+    
         $products = Product::all();
         ob_start();
-        require '../views/products/index.view.php';
+        require '../views/products/index.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -19,8 +21,9 @@ class ProductController
 
     public function create(Request $request, Response $response, $args)
     {
+        $categories = Category::all();
         ob_start();
-        require '../views/products/create.view.php';
+        require '../views/products/create.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -37,9 +40,10 @@ class ProductController
 
     public function edit(Request $request, Response $response, $args)
     {
+        $categories = Category::all();
         $product = Product::find($args['id']);
         ob_start();
-        require '../views/products/edit.view.php';
+        require '../views/products/edit.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -69,7 +73,7 @@ class ProductController
     {
         $product = Product::find($args['id']);
         ob_start();
-        require '../views/products/show.view.php';
+        require '../views/products/product_details.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

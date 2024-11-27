@@ -9,7 +9,15 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'nume', 'descriere', 'pret', 'stoc', 'categorie_id', 'culoare', 'marime', 'colectie'
+        'nume',
+        'image',
+        'descriere',
+        'pret',
+        'stoc',
+        'categorie_id',
+        'culoare',
+        'marime',
+        'colectie'
     ];
 
     public function reviews()
@@ -22,7 +30,7 @@ class Product extends Model
         return $this->hasMany(Wishlist::class);
     }
 
-    public function category()
+    public function categorie()
     {
         return $this->belongsTo(Category::class, 'categorie_id');
     }
