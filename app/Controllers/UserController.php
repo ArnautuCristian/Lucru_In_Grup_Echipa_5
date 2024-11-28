@@ -60,12 +60,16 @@ class UserController
         $data['parola'] = password_hash($data['parola'], PASSWORD_BCRYPT);
         User::create($data);
         return $response
-            ->withHeader('Location', '/login')
+            ->withHeader('Location', '/users/login')
             ->withStatus(302);
     }
 
     public function profile(Request $request, Response $response, $args)
     {
+        session_start();
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != $args['id']) {
+            return $response->withHeader('Location', '/users/login')->withStatus(302);
+        }
         $user = User::find($args['id']);
         ob_start();
         require '../views/users/profile.php';
@@ -74,10 +78,15 @@ class UserController
         return $response;
     }
 
+
     public function logout(Request $request, Response $response, $args)
     {
+        session_start();
         session_destroy();
+        error_log("Sesiunea a fost distrusă. User ID: " . ($_SESSION['user_id'] ?? 'None'));
+        $_SESSION = [];
         return $response->withHeader('Location', '/')->withStatus(302);
     }
+
 
 }

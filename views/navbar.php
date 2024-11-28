@@ -17,7 +17,7 @@
             font-size: 1.1rem;
         }
 
-        .btn-custom {
+        .btn {
             margin-left: 10px;
         }
     </style>
@@ -51,29 +51,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/categories/create">Create Category</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Option 1</a></li>
-                            <li><a class="dropdown-item" href="#">Option 2</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Option 3</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <!-- Butoanele Login și Register -->
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="/users/profile/<?= $_SESSION['user_id'] ?>" class="btn btn-primary btn-custom">Profile</a>
-                    <a href="/users/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+                    <a href="/users/profile/<?= $_SESSION['user_id'] ?>" class="btn btn-primary ">Profile</a>
+                    <a href="/users/logout" class="btn btn-outline-danger">Logout</a>
                 <?php else: ?>
                     <div class="d-flex">
-                        <a href="/users/login" class="btn btn-outline-primary btn-custom">Login</a>
-                        <a href="/users/register" class="btn btn-primary btn-custom">Register</a>
+                        <a href="/users/login" class="btn btn-outline-primary ">Login</a>
+                        <a href="/users/register" class="btn btn-primary ml-1">Register</a>
                     </div>
                 <?php endif; ?>
 

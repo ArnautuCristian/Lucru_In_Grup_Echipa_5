@@ -12,7 +12,7 @@
         }
 
         .btn {
-            width: 150px;
+            width: 100px;
             font-size: 0.9rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -114,7 +114,7 @@
                 <?php foreach($products as $product): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
-                            <img src="<?= $product->image ? asset($product->image) : 'https://via.placeholder.com/150' ?>" alt="Product Image" class="card-img-top">
+                            <img src="1.jpg" alt="Product Image" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($product->nume) ?></h5>
                                 <p class="card-text">
