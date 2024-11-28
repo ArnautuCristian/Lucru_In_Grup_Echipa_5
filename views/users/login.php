@@ -12,7 +12,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <h3>Login</h3>
-                <form action="/login" method="post">
+                <form action="/users/login" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" class="form-control" required>

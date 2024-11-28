@@ -23,7 +23,7 @@ class UserController
         session_start();
         // Verificăm dacă utilizatorul este deja autentificat
         if (isset($_SESSION['user_id'])) {
-            return $response->withHeader('Location', '/profile/' . $_SESSION['user_id'])->withStatus(302);
+            return $response->withHeader('Location', '/users/profile/' . $_SESSION['user_id'])->withStatus(302);
         }
 
         if ($request->getMethod() == 'POST') {
@@ -32,7 +32,7 @@ class UserController
 
             if ($user && password_verify($data['parola'], $user->parola)) {
                 $_SESSION['user_id'] = $user->id;
-                return $response->withHeader('Location', '/profile/' . $user->id)->withStatus(302);
+                return $response->withHeader('Location', '/users/profile/' . $user->id)->withStatus(302);
             } else {
                 return $response->withRedirect('/login?error=invalid_credentials');
             }

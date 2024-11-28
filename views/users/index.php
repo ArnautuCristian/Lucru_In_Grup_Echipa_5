@@ -17,7 +17,6 @@
                         <tr>
                             <th>#</th>
                             <th>First Name</th>
-                            <th>Last Name</th>
                             <th>Email</th>
                             <th>Options</th>
                         </tr>
@@ -28,10 +27,10 @@
                                 <tr>
                                     <td><?= htmlspecialchars($user->id) ?></td>
                                     <td><?= htmlspecialchars($user->nume) ?></td>
-                                    <td><?= htmlspecialchars($user->prenume) ?></td>
                                     <td><?= htmlspecialchars($user->email) ?></td>
                                     <td>
-                                        <a href="/profile/<?= $user->id ?>" class="btn btn-info btn-sm">View Profile</a>
+                                    <a href="/users/profile/<?= $user->id ?>" class="btn btn-info btn-sm">View Profile</a>
+
                                         <!-- Dacă vrei să adaugi și opțiunea de a edita sau șterge utilizatorii -->
                                         <a href="/users/edit/<?= $user->id ?>" class="btn btn-warning btn-sm">Edit</a>
                                         <form action="/users/delete/<?= $user->id ?>" method="POST" style="display:inline;">

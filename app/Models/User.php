@@ -9,7 +9,7 @@ class User extends Model
     protected $table = 'users';
 
     protected $fillable = [
-        'nume', 'prenume', 'email', 'parola'
+        'nume','email', 'parola'
     ];
 
     public function orders()

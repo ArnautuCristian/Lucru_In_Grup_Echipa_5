@@ -11,7 +11,6 @@
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
-                <h3>Profile of <?= htmlspecialchars($user->nume) ?> <?= htmlspecialchars($user->prenume) ?></h3>
                 <table class="table table-bordered">
                     <tr>
                         <td><strong>First Name:</strong></td>

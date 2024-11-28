@@ -25,6 +25,7 @@ $app->delete('/categories/delete/{id}', [CategoryController::class, 'delete']);
 // Rutele pentru UserController
 $app->get('/users', [UserController::class, 'index']);
 $app->get('/users/login', [UserController::class, 'login']);
+$app->post('/users/login', [UserController::class, 'login']);
 $app->get('/users/register', [UserController::class, 'register']);
 $app->post('/users/register', [UserController::class, 'store']);
 $app->get('/users/profile/{id}', [UserController::class, 'profile']);

@@ -12,14 +12,10 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <h3>Create an Account</h3>
-                <form action="/register" method="post">
+                <form action="/users/register" method="post">
                     <div class="mb-3">
                         <label for="nume" class="form-label">First Name</label>
                         <input type="text" name="nume" id="nume" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prenume" class="form-label">Last Name</label>
-                        <input type="text" name="prenume" id="prenume" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
