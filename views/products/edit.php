@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +89,7 @@
 
 <body>
     <?php include '../views/navbar.php'; ?>
-    
+
     <div class="container">
         <div class="row py-2 justify-content-center h5">
             <h3 class="text-center">Edit Product</h3>
@@ -97,20 +100,34 @@
                 <form action="/products/update/<?= $product->id ?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_METHOD" value="PUT" />
                     <div class="mb-3">
+                        <label for="imagine">Product Image</label>
+                        <input type="file" name="imagine" id="imagine" class="form-control" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label>Current Image</label><br>
+                        <img src="../public/uploads/<?= htmlspecialchars($product->imagine) ?>" alt="Product Image"
+                            class="img-fluid" style="max-height: 200px;">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="nume">Product Name</label>
-                        <input type="text" name="nume" id="nume" class="form-control" value="<?= $product->nume ?>" placeholder="Enter product name" required>
+                        <input type="text" name="nume" id="nume" class="form-control" value="<?= $product->nume ?>"
+                            placeholder="Enter product name" required>
                     </div>
                     <div class="mb-3">
                         <label for="descriere">Description</label>
-                        <textarea name="descriere" id="descriere" class="form-control" placeholder="Enter product description" required><?= $product->descriere ?></textarea>
+                        <textarea name="descriere" id="descriere" class="form-control"
+                            placeholder="Enter product description" required><?= $product->descriere ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="pret">Price</label>
-                        <input type="number" name="pret" id="pret" class="form-control" step="0.01" value="<?= $product->pret ?>" placeholder="Enter price" required>
+                        <input type="number" name="pret" id="pret" class="form-control" step="0.01"
+                            value="<?= $product->pret ?>" placeholder="Enter price" required>
                     </div>
                     <div class="mb-3">
                         <label for="stoc">Stock</label>
-                        <input type="number" name="stoc" id="stoc" class="form-control" value="<?= $product->stoc ?>" placeholder="Enter stock quantity" required>
+                        <input type="number" name="stoc" id="stoc" class="form-control" value="<?= $product->stoc ?>"
+                            placeholder="Enter stock quantity" required>
                     </div>
                     <div class="mb-3">
                         <label for="categorie_id">Category</label>
@@ -122,15 +139,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="culoare">Color</label>
-                        <input type="text" name="culoare" id="culoare" class="form-control" value="<?= $product->culoare ?>" placeholder="Enter color (optional)">
+                        <input type="text" name="culoare" id="culoare" class="form-control"
+                            value="<?= $product->culoare ?>" placeholder="Enter color (optional)">
                     </div>
                     <div class="mb-3">
                         <label for="marime">Size</label>
-                        <input type="text" name="marime" id="marime" class="form-control" value="<?= $product->marime ?>" placeholder="Enter size (e.g., S, M, L, XL)">
+                        <input type="text" name="marime" id="marime" class="form-control"
+                            value="<?= $product->marime ?>" placeholder="Enter size (e.g., S, M, L, XL)">
                     </div>
                     <div class="mb-3">
                         <label for="colectie">Collection</label>
-                        <input type="text" name="colectie" id="colectie" class="form-control" value="<?= $product->colectie ?>" placeholder="Enter collection name">
+                        <input type="text" name="colectie" id="colectie" class="form-control"
+                            value="<?= $product->colectie ?>" placeholder="Enter collection name">
                     </div>
 
                     <button type="submit" class="btn btn-dark btn-sm">Update Product</button>

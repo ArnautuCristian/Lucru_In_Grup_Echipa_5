@@ -10,7 +10,7 @@ class Product extends Model
 
     protected $fillable = [
         'nume',
-        'image',
+        'imagine',
         'descriere',
         'pret',
         'stoc',
@@ -22,7 +22,7 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'product_id');
     }
 
     public function wishlists()

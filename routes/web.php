@@ -31,4 +31,12 @@ $app->post('/users/register', [UserController::class, 'store']);
 $app->get('/users/profile/{id}', [UserController::class, 'profile']);
 $app->get('/users/logout', [UserController::class, 'logout']);
 
+// Rutele pentru ReviewController
+$app->post('/reviews/store', [ReviewController::class, 'store']);
+$app->get('/reviews/{user_id}', [ReviewController::class , 'getUserReviews']);
+
+// Rutele pentru WishlistController
+$app->get('/wishlist', [WishlistController::class, 'index']); // Vizualizează wishlist-ul utilizatorului
+$app->post('/wishlist/store', [WishlistController::class, 'store']); // Adaugă un produs în wishlist
+$app->delete('/wishlist/remove/{id}', [WishlistController::class, 'remove']); // Șterge un produs din wishlist
 

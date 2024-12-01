@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +37,9 @@
             transition: transform 0.3s ease-in-out;
             overflow: hidden;
             background: linear-gradient(135deg, #ffffff, #f3f4f6);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .card:hover {
@@ -41,20 +48,19 @@
         }
 
         .card-img-top {
-            max-height: 200px;
+            width: 100%;
+            height: 300px;
             object-fit: cover;
             border-radius: 15px 15px 0 0;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .card-img-top:hover {
-            transform: scale(1.05);
+            border: 5px solid rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
         }
 
         .card-body {
             padding: 25px;
             background-color: #fff;
             text-align: center;
+            flex: 1;
         }
 
         .card-title {
@@ -90,19 +96,22 @@
             padding: 15px;
             border-top: 1px solid #ddd;
         }
-        
+
         .product-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             gap: 30px;
         }
-        
+
         .product-container .col-md-4 {
             max-width: 320px;
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
+
 <body>
     <?php include '../views/navbar.php'; ?>
     <div class="container">
@@ -110,11 +119,12 @@
             List of Products
         </div>
         <div class="product-container">
-            <?php if($products->count() > 0): ?>
-                <?php foreach($products as $product): ?>
+            <?php if ($products->count() > 0): ?>
+                <?php foreach ($products as $product): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
-                            <img src="1.jpg" alt="Product Image" class="card-img-top">
+                            <img src="/uploads/<?= htmlspecialchars($product->imagine) ?>" alt="Product Image"
+                                class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($product->nume) ?></h5>
                                 <p class="card-text">
@@ -127,16 +137,17 @@
                                     <strong>Collection:</strong> <?= htmlspecialchars($product->colectie) ?>
                                 </p>
                                 <div class="d-flex justify-content-between">
-                                    <a href="/products/edit/<?=$product->id?>" class="btn btn-warning">Edit</a>
-                                    <a href="/products/show/<?=$product->id?>" class="btn btn-primary">Details</a>
-                                    <form action="/products/delete/<?=$product->id?>" method="POST" class="d-inline">
-                                        <input type="hidden" name="_METHOD" value="DELETE"/>
+                                    <a href="/products/edit/<?= $product->id ?>" class="btn btn-warning">Edit</a>
+                                    <a href="/products/show/<?= $product->id ?>" class="btn btn-primary">Details</a>
+                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline">
+                                        <input type="hidden" name="_METHOD" value="DELETE" />
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">Adaugat la: <?= date('d M Y', strtotime($product->created_at)) ?></small>
+                                <small class="text-muted">Added on:
+                                    <?= date('d M Y', strtotime($product->created_at)) ?></small>
                             </div>
                         </div>
                     </div>
@@ -149,4 +160,5 @@
         </div>
     </div>
 </body>
+
 </html>

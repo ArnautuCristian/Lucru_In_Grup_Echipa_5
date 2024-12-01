@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +32,8 @@
             color: #007bff;
         }
 
-        .form-container .form-control, .form-container .form-select {
+        .form-container .form-control,
+        .form-container .form-select {
             border-radius: 10px;
             box-shadow: none;
         }
@@ -61,7 +66,8 @@
             margin-bottom: 20px;
         }
 
-        .form-container .form-control:focus, .form-container .form-select:focus {
+        .form-container .form-control:focus,
+        .form-container .form-select:focus {
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
@@ -75,11 +81,13 @@
             margin-top: 20px;
         }
 
-        .form-container .form-select, .form-control {
+        .form-container .form-select,
+        .form-control {
             background-color: #f8f9fa;
         }
     </style>
 </head>
+
 <body>
     <?php include '../views/navbar.php'; ?>
     <div class="container">
@@ -91,20 +99,28 @@
                 <!-- Formular pentru crearea produsului -->
                 <form action="/products/store" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
+                        <label for="imagine">Product Image</label>
+                        <input type="file" name="imagine" id="imagine" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="nume">Product Name</label>
-                        <input type="text" name="nume" id="nume" class="form-control" placeholder="Enter product name" required>
+                        <input type="text" name="nume" id="nume" class="form-control" placeholder="Enter product name"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="descriere">Description</label>
-                        <textarea name="descriere" id="descriere" class="form-control" rows="4" placeholder="Enter product description" required></textarea>
+                        <textarea name="descriere" id="descriere" class="form-control" rows="4"
+                            placeholder="Enter product description" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="pret">Price</label>
-                        <input type="number" name="pret" id="pret" class="form-control" placeholder="Enter price" step="0.01" required>
+                        <input type="number" name="pret" id="pret" class="form-control" placeholder="Enter price"
+                            step="0.01" required>
                     </div>
                     <div class="mb-3">
                         <label for="stoc">Stock</label>
-                        <input type="number" name="stoc" id="stoc" class="form-control" placeholder="Enter stock quantity" required>
+                        <input type="number" name="stoc" id="stoc" class="form-control"
+                            placeholder="Enter stock quantity" required>
                     </div>
                     <div class="mb-3">
                         <label for="categorie_id">Category</label>
@@ -116,15 +132,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="culoare">Color</label>
-                        <input type="text" name="culoare" id="culoare" class="form-control" placeholder="Enter color (optional)">
+                        <input type="text" name="culoare" id="culoare" class="form-control"
+                            placeholder="Enter color (optional)">
                     </div>
                     <div class="mb-3">
                         <label for="marime">Size</label>
-                        <input type="text" name="marime" id="marime" class="form-control" placeholder="Enter size (e.g., S, M, L, XL)" >
+                        <input type="text" name="marime" id="marime" class="form-control"
+                            placeholder="Enter size (e.g., S, M, L, XL)">
                     </div>
                     <div class="mb-3">
                         <label for="colectie">Collection</label>
-                        <input type="text" name="colectie" id="colectie" class="form-control" placeholder="Enter collection name">
+                        <input type="text" name="colectie" id="colectie" class="form-control"
+                            placeholder="Enter collection name">
                     </div>
                     <button type="submit" class="btn btn-dark btn-sm">Save Product</button>
                 </form>
@@ -132,4 +151,5 @@
         </div>
     </div>
 </body>
+
 </html>

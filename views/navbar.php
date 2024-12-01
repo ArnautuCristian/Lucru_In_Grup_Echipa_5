@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body{
+            
+        }
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
@@ -19,6 +22,10 @@
 
         .btn {
             margin-left: 10px;
+        }
+        .container{
+            margin-top: 0;
+            width: 1320px;
         }
     </style>
 </head>
@@ -36,9 +43,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Meniurile principale -->
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/products">Products</a>
                     </li>
