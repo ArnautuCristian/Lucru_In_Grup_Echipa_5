@@ -10,9 +10,12 @@ class WishlistController
 {
     public function index(Request $request, Response $response, $args)
     {
-        $wishlists = Wishlist::all();
+        // Obține wishlist-ul utilizatorului pe baza user_id
+        $userId = $args['id']; // Obține id-ul utilizatorului din URL
+        $wishlists = Wishlist::where('user_id', $userId)->get(); // Filtrează wishlist-ul în funcție de user_id
+
         ob_start();
-        require '../views/wishlists/index.view.php';
+        require '../views/wishlists/index.view.php'; // Arată wishlist-ul
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
@@ -40,7 +43,9 @@ class WishlistController
         }
 
         // Redirecționează sau returnează un răspuns
-        return $response->withRedirect('/products/show/' . $productId);
+        return $response
+            ->withHeader('Location', '/products/show/' . $productId)
+            ->withStatus(302);
     }
 
     public function remove(Request $request, Response $response, $args)
@@ -59,7 +64,9 @@ class WishlistController
         }
 
         // Redirecționează înapoi la pagina produsului
-        return $response->withRedirect('/products/show/' . $productId);
+        return $response
+            ->withHeader('Location', '/products/show/' . $productId)
+            ->withStatus(302);
     }
 
 }

@@ -1,3 +1,7 @@
+<?php 
+$error = isset($_GET['error']) ? $_GET['error'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +11,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa; /* Fundal alb */
+            background-color: #f8f9fa;
         }
 
         .card {
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbre subtile pentru card */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card-body {
@@ -20,11 +24,11 @@
         }
 
         .btn-dark {
-            width: 100%; /* Butonul să ocupe întreaga lățime a formularului */
+            width: 100%;
         }
 
         .form-label {
-            font-weight: 600; /* Îngroșarea textului pentru etichete */
+            font-weight: 600;
         }
 
         .mt-3 {
@@ -41,6 +45,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Create an Account</h3>
+                        
+                        <!-- Mesaj de eroare -->
+                        <?php if ($error === 'email_taken'): ?>
+                            <div class="alert alert-danger text-center" role="alert">
+                                The email address is already in use. Please try another one.
+                            </div>
+                        <?php endif; ?>
+
                         <form action="/users/register" method="post">
                             <div class="mb-3">
                                 <label for="nume" class="form-label">First Name</label>

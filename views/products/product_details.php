@@ -197,18 +197,29 @@ use App\Models\Wishlist;
         <?php if ($product->reviews->count() > 0): ?>
             <?php foreach ($product->reviews as $review): ?>
                 <div class="review mb-4 p-3 border rounded shadow-sm">
-                    <strong><?= htmlspecialchars($review->user->name ?? 'Anonymous') ?></strong> <!-- Numele utilizatorului -->
+                    <strong><?= htmlspecialchars($review->user->name ?? 'Anonymous') ?></strong>
                     <p>Rating: <?= $review->rating ?> / 5</p>
                     <p><?= htmlspecialchars($review->comentariu) ?></p>
                     <small class="text-muted">Posted on: <?= date('d M Y', strtotime($review->data)) ?></small>
+
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $review->user_id): ?>
+                        <!-- Buton de ștergere -->
+                        <form action="/reviews/delete/<?= $review->id ?>" method="POST" style="display: inline-block;"onsubmit="return confirmDelete()">
+                            <input type="hidden" name="_METHOD" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-sm" >Delete</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class="text-muted">Inca nu sunt recenzii. Poti lasa tu prima!</p>
+            <p class="text-muted">No reviews yet. Be the first to leave one!</p>
         <?php endif; ?>
     </div>
 
     <script>
+        function confirmDelete() {
+            return confirm("Sunteti sigur ca doriti sa stergeti recenzia?");
+        }
         document.querySelectorAll('.wishlist-star').forEach(function (star) {
             star.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -227,8 +238,8 @@ use App\Models\Wishlist;
                 } else {
                     // Elimină produsul din wishlist
                     this.classList.remove('active');
-                    form.querySelector('input[name="_method"]').value = 'DELETE';  // Folosește metoda DELETE
-                    form.action = '/wishlist/remove/' + productId;
+                    form.querySelector('input[name="_METHOD"]').value = 'DELETE';  // Folosește metoda DELETE
+                    form.action = '/wishlist/delete/' + productId;
                 }
 
                 form.submit();  // Trimite formularul pentru a actualiza wishlist-ul

@@ -30,10 +30,16 @@ $app->get('/users/register', [UserController::class, 'register']);
 $app->post('/users/register', [UserController::class, 'store']);
 $app->get('/users/profile/{id}', [UserController::class, 'profile']);
 $app->get('/users/logout', [UserController::class, 'logout']);
+$app->get('/users/change-password', [UserController::class, 'changePassword']);
+$app->post('/users/change-password', [UserController::class, 'changePassword']);
+
 
 // Rutele pentru ReviewController
 $app->post('/reviews/store', [ReviewController::class, 'store']);
-$app->get('/reviews/{user_id}', [ReviewController::class , 'getUserReviews']);
+$app->get('/reviews/{user_id}', [ReviewController::class, 'getUserReviews']);
+$app->delete('/reviews/delete/{id}', [ReviewController::class, 'destroy']);
+
+
 
 // Rutele pentru WishlistController
 $app->get('/wishlist', [WishlistController::class, 'index']); // Vizualizează wishlist-ul utilizatorului

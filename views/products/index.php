@@ -139,7 +139,7 @@ session_start();
                                 <div class="d-flex justify-content-between">
                                     <a href="/products/edit/<?= $product->id ?>" class="btn btn-warning">Edit</a>
                                     <a href="/products/show/<?= $product->id ?>" class="btn btn-primary">Details</a>
-                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline">
+                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline" onsubmit="return confirmDelete()">
                                         <input type="hidden" name="_METHOD" value="DELETE" />
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
@@ -159,6 +159,11 @@ session_start();
             <?php endif; ?>
         </div>
     </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Esti sigur ca doresti sa stergi acest produs?");
+        }
+    </script>
 </body>
 
 </html>

@@ -73,6 +73,7 @@
                                 <td><?= htmlspecialchars($user->email) ?></td>
                             </tr>
                         </table>
+                        <a href="/users/change-password" class="btn btn-primary btn-custom">Schimba Parola</a>
                     </div>
                 </div>
 

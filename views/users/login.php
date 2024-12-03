@@ -1,3 +1,7 @@
+<?php 
+$error = isset($_GET['error']) ? $_GET['error'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,25 +11,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa; /* Fundal alb */
+            background-color: #f8f9fa;
         }
         .card {
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbre subtile pentru card */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .card-body {
             padding: 30px;
         }
-
         .btn-primary {
-            width: 100%; /* Butonul să ocupe întreaga lățime a formularului */
+            width: 100%;
         }
-
         .form-label {
-            font-weight: 600; /* Îngroșarea textului pentru etichete */
+            font-weight: 600;
         }
-
         .mt-3 {
             font-size: 14px;
         }
@@ -40,6 +40,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Login</h3>
+                        
+                        <!-- Mesaj de eroare -->
+                        <?php if ($error === 'invalid_credentials'): ?>
+                            <div class="alert alert-danger text-center" role="alert">
+                                Invalid email or password. Please try again.
+                            </div>
+                        <?php endif; ?>
+
                         <form action="/users/login" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -51,7 +59,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>
-                        <p class="mt-3 text-center">Don't have an account? <a href="/register">Register here</a></p>
+                        <p class="mt-3 text-center">Don't have an account? <a href="/users/register">Register here</a></p>
                     </div>
                 </div>
             </div>
