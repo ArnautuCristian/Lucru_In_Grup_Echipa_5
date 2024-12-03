@@ -61,32 +61,41 @@ class UserController
     }
 
     public function store(Request $request, Response $response, $args)
-    {
-        $data = $request->getParsedBody();
-        $email = $data['email'];
-        $parola = $data['parola'];
-        $nume = $data['nume'];
+{
+    $data = $request->getParsedBody();
+    $email = $data['email'];
+    $parola = $data['parola'];
+    $nume = $data['nume'];
 
-        // Verificăm dacă emailul există deja
-        $existingUser = User::where('email', $email)->first();
+    // Verificăm dacă emailul există deja
+    $existingUser = User::where('email', $email)->first();
 
-        if ($existingUser) {
-            return $response
-                ->withHeader('Location', '/users/register?error=email_taken')
-                ->withStatus(302);
-        }
-
-        // Creăm un utilizator nou
-        $user = new User();
-        $user->nume = $nume;
-        $user->email = $email;
-        $user->parola = password_hash($parola, PASSWORD_BCRYPT);
-        $user->save();
-
+    if ($existingUser) {
         return $response
-            ->withHeader('Location', '/users/login?success=account_created')
+            ->withHeader('Location', '/users/register?error=email_taken')
             ->withStatus(302);
     }
+
+    // Creăm un utilizator nou
+    $user = new User();
+    $user->nume = $nume;
+    $user->email = $email;
+    $user->parola = password_hash($parola, PASSWORD_BCRYPT);
+
+    // Atribuim rolul de admin doar dacă emailul este cel specificat
+    if ($email === 'arnautu.cristian@elev.cihcahul.md') {
+        $user->role = 'admin';
+    } else {
+        $user->role = 'user';  // Restul utilizatorilor vor avea rolul 'user'
+    }
+
+    $user->save();
+
+    return $response
+        ->withHeader('Location', '/users/login?success=account_created')
+        ->withStatus(302);
+}
+
 
 
     public function profile(Request $request, Response $response, $args)

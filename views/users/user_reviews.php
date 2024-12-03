@@ -1,11 +1,5 @@
 <?php
-session_start(); // Asigură-te că sesiunea este activată pentru gestionarea sesiunii utilizatorului
-
-// Încearcă să obții recenziile utilizatorului din controller
-// Presupunem că $reviews este deja disponibil în vizualizare
-
-// Dacă recenziile nu au fost transmise corect, poți seta o valoare implicită
-$reviews = $reviews ?? [];
+session_start();
 ?>
 
 <!DOCTYPE html>

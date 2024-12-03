@@ -52,8 +52,8 @@ session_start();
             height: 300px;
             object-fit: cover;
             border-radius: 15px 15px 0 0;
-            border: 5px solid rgba(0, 0, 0, 0.15);
-            border-radius: 15px;
+            border: 3px solid rgba(0, 0, 0, 0.15);
+            border-radius: 15px 15px 0 0;
         }
 
         .card-body {
@@ -118,8 +118,35 @@ session_start();
         <div class="row py-2 justify-content-center h5">
             List of Products
         </div>
+        <form action="/products" method="GET" class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="query" class="form-label">Căutare după nume:</label>
+                    <input type="text" name="query" id="query" class="form-control"
+                        value="<?= htmlspecialchars($query) ?>" placeholder="Căutați un produs...">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="categorie_id" class="form-label">Filtrează după categorie:</label>
+                    <select name="categorie_id" id="categorie_id" class="form-select">
+                        <option value="">Toate categoriile</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category->id ?>" <?= isset($_GET['categorie_id']) && $_GET['categorie_id'] == $category->id ? 'selected' : '' ?>>
+                                <?= $category->nume ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="col-2 mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Filtrează</button>
+                </div>
+            </div>
+        </form>
+
+
         <div class="product-container">
-            <?php if ($products->count() > 0): ?>
+            <?php if (count($products) > 0): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
@@ -139,7 +166,8 @@ session_start();
                                 <div class="d-flex justify-content-between">
                                     <a href="/products/edit/<?= $product->id ?>" class="btn btn-warning">Edit</a>
                                     <a href="/products/show/<?= $product->id ?>" class="btn btn-primary">Details</a>
-                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline" onsubmit="return confirmDelete()">
+                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline"
+                                        onsubmit="return confirmDelete()">
                                         <input type="hidden" name="_METHOD" value="DELETE" />
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
@@ -158,12 +186,13 @@ session_start();
                 </div>
             <?php endif; ?>
         </div>
-    </div>
-    <script>
-        function confirmDelete() {
-            return confirm("Esti sigur ca doresti sa stergi acest produs?");
-        }
-    </script>
+
+
+        <script>
+            function confirmDelete() {
+                return confirm("Esti sigur ca doresti sa stergi acest produs?");
+            }
+        </script>
 </body>
 
 </html>

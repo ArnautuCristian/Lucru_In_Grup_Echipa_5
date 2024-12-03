@@ -10,12 +10,13 @@ class WishlistController
 {
     public function index(Request $request, Response $response, $args)
     {
-        // Obține wishlist-ul utilizatorului pe baza user_id
-        $userId = $args['id']; // Obține id-ul utilizatorului din URL
-        $wishlists = Wishlist::where('user_id', $userId)->get(); // Filtrează wishlist-ul în funcție de user_id
+        $wishlists = Wishlist::with('product')->get();
+        $userId = $args['id'];  // Obține ID-ul utilizatorului din URL
+        $wishlists = Wishlist::where('user_id', $userId)->get();
 
+        // Răspunsul cu wishlist-ul utilizatorului
         ob_start();
-        require '../views/wishlists/index.view.php'; // Arată wishlist-ul
+        require '../views/users/user_wishlist.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

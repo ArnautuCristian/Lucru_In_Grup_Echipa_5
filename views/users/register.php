@@ -1,9 +1,10 @@
-<?php 
+<?php
 $error = isset($_GET['error']) ? $_GET['error'] : null;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +37,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         }
     </style>
 </head>
+
 <body>
     <?php include '../views/navbar.php'; ?>
 
@@ -45,7 +47,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Create an Account</h3>
-                        
+
                         <!-- Mesaj de eroare -->
                         <?php if ($error === 'email_taken'): ?>
                             <div class="alert alert-danger text-center" role="alert">
@@ -66,6 +68,17 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
                                 <label for="parola" class="form-label">Password</label>
                                 <input type="password" name="parola" id="parola" class="form-control" required>
                             </div>
+
+                            <?php if (isset($_SESSION['user_id']) && User::find($_SESSION['user_id'])->isAdmin()): ?>
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select name="role" id="role" class="form-select">
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                            <?php endif; ?>
+
                             <button type="submit" class="btn btn-dark">Register</button>
                         </form>
                         <p class="mt-3 text-center">Already have an account? <a href="/users/login">Login here</a></p>
@@ -77,4 +90,5 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

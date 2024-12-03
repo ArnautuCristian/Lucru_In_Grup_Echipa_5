@@ -9,8 +9,12 @@ class User extends Model
     protected $table = 'users';
 
     protected $fillable = [
-        'nume','email', 'parola'
+        'nume','email', 'parola', 'role'
     ];
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 
     public function orders()
     {

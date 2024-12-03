@@ -4,6 +4,7 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Models\Category;
+use App\Models\User;
 
 class CategoryController
 {
@@ -21,6 +22,11 @@ class CategoryController
     {
         // Obține toate categoriile din baza de date
         $categories = Category::all();
+        session_start();
+        // Verificăm dacă utilizatorul este admin
+        if (!isset($_SESSION['user_id']) || !User::find($_SESSION['user_id'])->isAdmin()) {
+            return $response->withHeader('Location', '/categories')->withStatus(403); // Acces interzis
+        }
         // Trimite categoriile către vizualizare
         ob_start();
         require '../views/categories/create.php';

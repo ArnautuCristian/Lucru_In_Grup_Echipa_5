@@ -8,9 +8,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body{
-            
+        body {
+            padding-top: 20px;
         }
+
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
@@ -23,7 +24,8 @@
         .btn {
             margin-left: 10px;
         }
-        .container{
+
+        .container {
             margin-top: 0;
             width: 1320px;
         }
@@ -58,19 +60,19 @@
                 </ul>
                 <!-- Butoanele Login și Register -->
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="/users/profile/<?= $_SESSION['user_id'] ?>" class="btn btn-primary ">Profile</a>
+                    <a href="/orders/show/<?= $_SESSION['user_id'] ?>" class="btn btn-secondary">Cart</a>
+                    <a href="/users/profile/<?= $_SESSION['user_id'] ?>" class="btn btn-primary">Profile</a>
                     <a href="/users/logout" class="btn btn-outline-danger">Logout</a>
                 <?php else: ?>
                     <div class="d-flex">
-                        <a href="/users/login" class="btn btn-outline-primary ">Login</a>
+                        <a href="/users/login" class="btn btn-outline-primary">Login</a>
                         <a href="/users/register" class="btn btn-primary ml-1">Register</a>
                     </div>
                 <?php endif; ?>
-
-
             </div>
         </div>
     </nav>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

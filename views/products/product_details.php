@@ -102,6 +102,10 @@ use App\Models\Wishlist;
         .wishlist-star.active {
             color: gold;
         }
+        .btn.btn-warning.mt-2{
+            margin-left: 0;
+        }
+
     </style>
 </head>
 
@@ -156,6 +160,19 @@ use App\Models\Wishlist;
                             <?php else: ?>
                                 <p>Please <a href="/users/login">log in</a> to add products to your wishlist.</p>
                             <?php endif; ?>
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <form action="/order-items/add" method="POST">
+                                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+                                    <input type="hidden" name="cantitate" value="1"> <!-- Cantitate implicită este 1 -->
+                                    <button type="submit" class="btn btn-warning mt-2">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <p>Please <a href="/users/login">log in</a> to add products to your cart.</p>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
@@ -204,9 +221,10 @@ use App\Models\Wishlist;
 
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $review->user_id): ?>
                         <!-- Buton de ștergere -->
-                        <form action="/reviews/delete/<?= $review->id ?>" method="POST" style="display: inline-block;"onsubmit="return confirmDelete()">
+                        <form action="/reviews/delete/<?= $review->id ?>" method="POST" style="display: inline-block;"
+                            onsubmit="return confirmDelete()">
                             <input type="hidden" name="_METHOD" value="DELETE">
-                            <button type="submit" class="btn btn-danger btn-sm" >Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     <?php endif; ?>
                 </div>

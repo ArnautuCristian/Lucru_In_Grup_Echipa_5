@@ -21,4 +21,8 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function totalPrice()
+    {
+        return $this->cantitate * $this->product->pret;
+    }
 }

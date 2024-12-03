@@ -81,7 +81,7 @@
                 <div class="profile-info">
                     <a href="/orders/<?= $user->id ?>" class="btn btn-info btn-custom">View Orders</a>
                     <a href="/reviews/<?= $user->id ?>" class="btn btn-warning btn-custom">View Reviews</a>
-                    <a href="/wishlists/<?= $user->id ?>" class="btn btn-success btn-custom">View Wishlist</a>
+                    <a href="/wishlist/<?= $user->id ?>" class="btn btn-success btn-custom">View Wishlist</a>
                 </div>
             </div>
         </div>
