@@ -1,5 +1,6 @@
 <?php
 session_start();
+use App\Models\User;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -164,14 +165,17 @@ session_start();
                                     <strong>Collection:</strong> <?= htmlspecialchars($product->colectie) ?>
                                 </p>
                                 <div class="d-flex justify-content-between">
-                                    <a href="/products/edit/<?= $product->id ?>" class="btn btn-warning">Edit</a>
+                                    <?php if (isset($_SESSION['user_id']) && User::find($_SESSION['user_id'])->isAdmin()): ?>
+                                        <a href="/products/edit/<?= $product->id ?>" class="btn btn-warning">Edit</a>
+                                        <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline"
+                                            onsubmit="return confirmDelete()">
+                                            <input type="hidden" name="_METHOD" value="DELETE" />
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    <?php endif; ?>
                                     <a href="/products/show/<?= $product->id ?>" class="btn btn-primary">Details</a>
-                                    <form action="/products/delete/<?= $product->id ?>" method="POST" class="d-inline"
-                                        onsubmit="return confirmDelete()">
-                                        <input type="hidden" name="_METHOD" value="DELETE" />
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
                                 </div>
+
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">Added on:

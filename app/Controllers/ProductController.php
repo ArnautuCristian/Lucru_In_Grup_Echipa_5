@@ -56,11 +56,13 @@ class ProductController
     public function create(Request $request, Response $response, $args)
     {
         session_start();
-        // Verificăm dacă utilizatorul este admin
-        if (!isset($_SESSION['user_id']) || !User::find($_SESSION['user_id'])->isAdmin()) {
+        $userId = $_SESSION['user_id'] ?? null;
+
+        if (!$userId || User::find($userId)->role !== 'admin') {
             return $response->withHeader('Location', '/products')->withStatus(403); // Acces interzis
         }
 
+        $categories = Category::all();
         // Logica pentru a crea un produs
         ob_start();
         require '../views/products/create.php';

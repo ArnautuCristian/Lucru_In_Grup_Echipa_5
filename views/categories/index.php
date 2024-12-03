@@ -1,5 +1,6 @@
 <?php
 session_start();
+use App\Models\User;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,11 +106,14 @@ session_start();
                                 <?= htmlspecialchars($category->nume) ?>
                             </div>
                             <div class="card-body">
-                                <a href="/categories/edit/<?=$category->id?>" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="/categories/delete/<?=$category->id?>" method="post" style="display:inline;">
-                                    <input type="hidden" name="_METHOD" value="DELETE"/>
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                <!-- Verifică dacă utilizatorul este autentificat și este admin -->
+                                <?php if (isset($_SESSION['user_id']) && User::find($_SESSION['user_id'])->isAdmin()): ?>
+                                    <a href="/categories/edit/<?=$category->id?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="/categories/delete/<?=$category->id?>" method="post" style="display:inline;">
+                                        <input type="hidden" name="_METHOD" value="DELETE"/>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                <?php endif; ?>
                             </div>
                             <div class="card-footer">
                                 Category ID: <?= $category->id ?>

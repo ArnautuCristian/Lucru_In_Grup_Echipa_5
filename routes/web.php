@@ -7,7 +7,6 @@ use App\Controllers\OrderItemController;
 use App\Controllers\ReviewController;
 use App\Controllers\WishlistController;
 // Rutele pentru ProductController
-$app->redirect('/', '/products');
 $app->get('/products', [ProductController::class, 'index']);
 $app->get('/products/create', [ProductController::class, 'create']);
 $app->post('/products/store', [ProductController::class, 'store']);
@@ -25,7 +24,7 @@ $app->put('/categories/update/{id}', [CategoryController::class, 'update']);
 $app->delete('/categories/delete/{id}', [CategoryController::class, 'delete']);
 
 // Rutele pentru UserController
-$app->get('/users', [UserController::class, 'index']);
+$app->get('/', [UserController::class, 'home']);  // Ruta pentru pagina principală
 $app->get('/users/login', [UserController::class, 'login']);
 $app->post('/users/login', [UserController::class, 'login']);
 $app->get('/users/register', [UserController::class, 'register']);

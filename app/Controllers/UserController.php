@@ -8,16 +8,23 @@ use App\Models\User;
 
 class UserController
 {
-    public function index(Request $request, Response $response, $args)
+    public function home(Request $request, Response $response)
     {
-        $users = User::all();  // Obține toți utilizatorii
+        // Verifică dacă utilizatorul este deja autentificat
+        session_start();
+        if (isset($_SESSION['user_id'])) {
+            // Dacă utilizatorul este logat, redirecționează-l către profil
+            return $response->withHeader('Location', '/users/profile/' . $_SESSION['user_id'])->withStatus(302);
+        }
+    
+        // Dacă nu este logat, afișează pagina principală
         ob_start();
-        require '../views/users/index.php';  // Vei încărca pagina HTML care va afișa utilizatorii
+        require '../views/home.php';  // Vederea pentru pagina principală
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
     }
-
+    
     public function login(Request $request, Response $response, $args)
     {
         if ($request->getMethod() == 'POST') {

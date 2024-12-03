@@ -23,8 +23,9 @@ class CategoryController
         // Obține toate categoriile din baza de date
         $categories = Category::all();
         session_start();
-        // Verificăm dacă utilizatorul este admin
-        if (!isset($_SESSION['user_id']) || !User::find($_SESSION['user_id'])->isAdmin()) {
+        $userId = $_SESSION['user_id'] ?? null;
+
+        if (!$userId || User::find($userId)->role !== 'admin') {
             return $response->withHeader('Location', '/categories')->withStatus(403); // Acces interzis
         }
         // Trimite categoriile către vizualizare
