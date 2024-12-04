@@ -22,9 +22,24 @@ class OrderController
     {
         $order = Order::find($args['id']);
         ob_start();
-        require '../views/orders/show.view.php';
+        require '../views/orders/order_items_show.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
     }
+    public function completeOrder(Request $request, Response $response, $args)
+    {
+        $order = Order::find($args['id']);
+
+        if (!$order) {
+            return $response->withStatus(404)->write('Order not found');
+        }
+
+        // Schimbă statusul comenzii la 'completed'
+        $order->status = 'completed';
+        $order->save();
+
+        return $response->withHeader('Location', '/orders/show/' . $order->id)->withStatus(302);
+    }
+
 }
